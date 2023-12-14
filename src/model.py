@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import (
+from keras.layers import (
     Dense,
     Input,
     Activation,
@@ -7,8 +7,8 @@ from tensorflow.keras.layers import (
     TimeDistributed,
     Flatten,
 )
-from tensorflow.keras.layers import LSTM
-from tensorflow.keras.models import Sequential, Model
+from keras.layers import LSTM
+from keras.models import Sequential, Model
 
 
 class CustomModel:

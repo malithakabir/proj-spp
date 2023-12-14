@@ -1,0 +1,19 @@
+
+{
+    "IPGP": 
+    {
+        "data": {
+            "rolling_window": 20,
+            "forecast_horizon": 20,
+            "latest_raw_data": "2020-03-24",
+            "latest_technical_analysis": "2020-03-24",
+            "date_of_update": "2020-06-26"
+        },
+        "model": {
+            "trained_on": "technical_analysis_data",
+            "model_name":"LSTM_IPGP_RW20_FH20.h5",
+            "training_data_ends": "",
+            "date_of_update": "2020-06-26"
+        }
+    }
+}

@@ -9,7 +9,7 @@ import pandas_datareader as pdr
 
 
 class DataLoader:
-    def __init__(self, ticker, dirname=None, preprocessed=None):
+    def __init__(self, ticker, dirname=None):
         print("Instantiating data loader")
         if ticker is None:
             print("Ticker is missing")
@@ -18,9 +18,7 @@ class DataLoader:
         if dirname is not None:
             self.datadir = dirname
 
-        self.preprocessed = None
-        if preprocessed is not None:
-            self.preprocessed = preprocessed
+        self.isTechnical = None
         self.filename_processed = None
         self.df_processed = None
         self.filename_raw = None
@@ -29,16 +27,17 @@ class DataLoader:
     def set_datadir(self, dirname):
         self.datadir = dirname
 
-    def read_local(self, preprocessed=True):
-        if preprocessed:
-            fname = "{}Data_for_{}.csv".format(self.datadir, self.ticker)
+    def read_local(self, isTechnical=True):
+        self.isTechnical = isTechnical
+        if isTechnical:
+            fname = "{}{}_TA_V1.csv".format(self.datadir, self.ticker)
             print("Reading from: {}".format(fname))
             self.filename_processed = fname
             self.df_processed = pd.read_csv(
                 self.filename_processed, parse_dates=True, index_col=0
             )
         else:
-            fname = "{}{}.csv".format(self.datadir, self.ticker)
+            fname = "{}{}_RAW.csv".format(self.datadir, self.ticker)
             print("Reading from: {}".format(fname))
             self.filename_raw = fname
             self.df_raw = pd.read_csv(
@@ -84,7 +83,7 @@ class ModelLoder:
         self.rolling_window = val
 
     def read_model_local(self):
-        model_name = "{}LSTM_{}_{}_{}.h5".format(
+        model_name = "{}LSTM_{}_RW{}_FH{}.h5".format(
             self.modeldir, self.ticker, self.rolling_window, self.forecast_horizon
         )
         print("Loading model from {}".format(model_name))

@@ -3,15 +3,30 @@ import numpy as np
 from sklearn.metrics import mean_squared_error as mse
 
 
-def invert_scale_N_feature(scaler, X, yhat):
+def invert_scale_N_feature(scaler, data, prediction):
+    """
+    Important: data includes the target and features
+    Note: the first column in always the target i.e.: Adj Close
+    """
     #   the 1st column is the 'Adj Close' price column
-    result = np.zeros([X.shape[0] + yhat.shape[0], X.shape[1]])
-    result[: X.shape[0], :] = X
-    result[-yhat.shape[0] :, 0] = yhat
+    any_seq_length = data.shape[0]
+    pred_seq_length = prediction.shape[0]
+
+    total_length_for_inversion = any_seq_length + pred_seq_length
+
+    no_of_features = data.shape[1]
+
+    result = np.zeros([total_length_for_inversion, no_of_features])
+
+    result[:any_seq_length, :] = data  # insert data at top
+    result[-pred_seq_length:, 0] = prediction  # insert predictions at bottom
 
     inverted = scaler.inverse_transform(result)
 
-    return inverted[: -yhat.shape[0], 0], inverted[-yhat.shape[0] :, 0]
+    inv_true = inverted[:-pred_seq_length, 0]
+    inv_pred = inverted[-pred_seq_length:, 0]
+
+    return inv_true, inv_pred
 
 
 def calculate_rmse(scalers, data, labels, predicts, splitname):

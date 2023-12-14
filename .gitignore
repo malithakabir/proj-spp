@@ -166,3 +166,4 @@ model-dev-v1.ipynb
 StockPrediction.ipynb
 # ignore main
 main.py
+src/dtfetch.py
