@@ -161,4 +161,8 @@ cython_debug/
 
 # vs code
 *.code-workspace
-*.ipynb
+# ignore notebook
+model-dev-v1.ipynb
+StockPrediction.ipynb
+# ignore main
+main.py
