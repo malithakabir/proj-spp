@@ -161,5 +161,4 @@ cython_debug/
 
 # vs code
 *.code-workspace
-model-dev-v1.ipynb
-StockPrediction.ipynb
+*.ipynb
