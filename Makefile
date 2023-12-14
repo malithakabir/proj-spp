@@ -9,7 +9,7 @@ format:
 	black *.py src/*.py
 
 lint:
-	pylint --disable=R,C,import-error,unused-import --ignore-patterns=test_.*?py *.py src/*.py 
+	pylint --disable=R,C,import-error,unused-import --ignore-patterns=test_.*?py src/*.py 
 
 all: install lint test format
 
