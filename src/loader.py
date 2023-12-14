@@ -9,6 +9,7 @@ import pandas_datareader as pdr
 
 class DataLoader:
     def __init__(self, ticker, dirname=None, preprocessed=None):
+        print('Instantiating data loader')
         if ticker is None:
             print('Ticker is missing')
         else:

@@ -12,6 +12,7 @@ def print_data_split(df_train, df_test, df_predict):
 
 class Preprocess:
     def __init__(self):
+        print('Instantiating preprocessor')
         self.isnadrop = False
     def set_df(self, df):
         self.df = df

@@ -12,7 +12,6 @@ rolling_window = 20
 forecast_horizon = 20
 test_size = 0.3
 
-print('Instantiating data loader')
 data = DataLoader(ticker='IPGP')
 data.set_datadir(dirname='data/')
 data.read_local(preprocessed=True)
@@ -21,7 +20,6 @@ print('printing first 5 rows')
 print(data.df_processed.head(5))
 
 print()
-print('Entering to preprocessor')
 preprocessor = Preprocess()
 preprocessor.set_df(data.df_processed)
 preprocessor.dropna()
@@ -44,14 +42,13 @@ print()
 print('first 5 rows from forecast split')
 print(data_split['df_predict'].head(5))
 
-print()
-print('last 5 rows from forecast split')
-print(data_split['df_predict'].tail(5))
+# print()
+# print('last 5 rows from forecast split')
+# print(data_split['df_predict'].tail(5))
 
 # set forecast_horizon
-preprocessor.set_forecast_horizon(20)
+preprocessor.set_forecast_horizon(forecast_horizon)
 preprocessor.calculate_sequence_length()
-
 
 ndata_train = preprocessor.normalise_dataframe(df=data_split['df_train'], step=1, standard_norm=True)
 scalers_train = ndata_train['scalers']
@@ -60,19 +57,18 @@ train_data = pdata_train['data']
 X_train = pdata_train['features']
 y_train = pdata_train['labels']
 
-print()
-print('train_data.shape', train_data.shape)
-print('X_train.shape', X_train.shape)
-print('y_train.shape', y_train.shape)
-print('y_train.squeeze().shape', y_train.squeeze().shape)
-
-
 ndata_test = preprocessor.normalise_dataframe(df=data_split['df_test'], step=1, standard_norm=True)
 scalers_test = ndata_test['scalers']
 pdata_test = preprocessor.prepare_feature_and_label(data_list=ndata_test['normalised_data'])
 test_data = pdata_test['data']
 X_test = pdata_test['features']
 y_test = pdata_test['labels']
+
+print()
+print('train_data.shape', train_data.shape)
+print('X_train.shape', X_train.shape)
+print('y_train.shape', y_train.shape)
+print('y_train.squeeze().shape', y_train.squeeze().shape)
 
 print()
 print('test_data.shape', test_data.shape)
