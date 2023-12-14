@@ -18,7 +18,7 @@ jobs:
                 cd ta-lib
                 ./configure
                 make
-                make install
+                sudo make install
           - name: install packages
             run: make install
           - name: lint
