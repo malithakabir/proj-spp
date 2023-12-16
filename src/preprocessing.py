@@ -12,7 +12,7 @@ def print_data_split(df_train, df_test, df_predict):
     print("prediction data ends at", df_predict.index[-1])
 
 
-class Preprocess:
+class Preprocessor:
     def __init__(self):
         print("Instantiating preprocessor")
         self.isnadrop = False
@@ -130,9 +130,17 @@ class Preprocess:
         if not self.isTechnical:
             df_technical = self.df.copy()
             # transform the data and get %change daily
-            df_technical["HL_PCT"] = (df_technical["High"] - df_technical["Low"]) / df_technical["Low"] * 100.0
+            df_technical["HL_PCT"] = (
+                (df_technical["High"] - df_technical["Low"])
+                / df_technical["Low"]
+                * 100.0
+            )
             # spread/volatility from day to day
-            df_technical["PCT_change"] = (df_technical["Adj Close"] - df_technical["Open"]) / df_technical["Open"] * 100.0
+            df_technical["PCT_change"] = (
+                (df_technical["Adj Close"] - df_technical["Open"])
+                / df_technical["Open"]
+                * 100.0
+            )
 
             # obtain the data from the technical analysis function and process it into useful features
             # open = df_technical['Open'].values
@@ -182,7 +190,9 @@ class Preprocess:
             df_technical["ADX"] = tb.ADX(high, low, close, timeperiod=20)
             # df_technical['ADXR'] = tb.ADXR(high, low, close, timeperiod=20)
 
-            df_technical["MACD"] = tb.MACD(close, fastperiod=12, slowperiod=26, signalperiod=9)[2]
+            df_technical["MACD"] = tb.MACD(
+                close, fastperiod=12, slowperiod=26, signalperiod=9
+            )[2]
             df_technical["RSI"] = tb.RSI(close, timeperiod=14)
             # df_technical['AD'] = tb.AD(high, low, close, volume)
             df_technical["ATR"] = tb.ATR(high, low, close, timeperiod=14)

@@ -1,0 +1,51 @@
+{
+    "IPGP": {
+        "data": {
+            "0": {
+                "raw_data_filename": "IPGP_RAW_V1.csv",
+                "raw_data_date_of_latest_data_point": "2020-03-24",
+                "raw_data_date_of_first_data_point": "2006-12-13s",
+                "technical_analysis_filename": "IPGP_TA_V1.csv",
+                "date_of_entry": "unknown"
+            },
+            "1": {
+                "raw_data_filename": "IPGP_RAW_V1.csv",
+                "raw_data_date_of_latest_data_point": null,
+                "raw_data_date_of_first_data_point": null,
+                "technical_analysis_filename": "IPGP_TA_V1.csv",
+                "date_of_entry": null
+            }
+        },
+        "model": {
+            "0": {
+                "rolling_window": 20,
+                "forecast_horizon": 20,
+                "data_filename": "IPGP_TA_V1.csv",
+                "data_version": "0",
+                "model_name": "LSTM_IPGP_RW20_FH20_V1.h5",
+                "training_history": "LSTM_IPGP_RW20_FH20_V1.json",
+                "test_data": 0.3,
+                "epochs": 40,
+                "batch_size": 60,
+                "drop_rate": 0.1,
+                "n_units": 400,
+                "date_of_entry": "unknown"
+            },
+            "1": {
+                "rolling_window": 20,
+                "forecast_horizon": 20,
+                "data_filename": "IPGP_TA_V1.csv",
+                "data_version": "0",
+                "model_name": null,
+                "training_history": null,
+                "test_data": 0.3,
+                "epochs": 1,
+                "batch_size": 4,
+                "drop_rate": null,
+                "n_units": null,
+                "date_of_update": null,
+                "date_of_entry": null
+            }
+        }
+    }
+}

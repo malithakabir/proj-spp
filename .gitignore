@@ -164,6 +164,9 @@ cython_debug/
 # ignore notebook
 model-dev-v1.ipynb
 StockPrediction.ipynb
+StockPredictionTraining.ipynb
+test.ipynb
 # ignore main
 main.py
 src/dtfetch.py
+src/model_base.py
